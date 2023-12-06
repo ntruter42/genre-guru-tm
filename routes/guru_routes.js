@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
 	try {
 		console.log(await services.returnTrue());
 		res.render('listen', {
-			title: "Listen"
+			action: "listening"
 		});
 	} catch (error) {
 		console.error(error);
@@ -21,7 +21,7 @@ router.get('/question', async (req, res) => {
 	// const question = await services.getQuestion(song.genre_id, user.level);
 
 	res.render('questions', {
-		title: "Trivia Question",
+		action: "asking",
 		level: 1,
 		question: `In R&B, what is the significance of the 'backbeat' and how does it contribute to the genre's distinctive rhythm?`,
 		options: [
