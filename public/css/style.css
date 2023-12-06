@@ -1,0 +1,44 @@
+:root {
+	--nav-height: 3em;
+}
+
+* {
+	outline: none;
+	border: none;
+
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+
+	text-decoration: none;
+	list-style: none;
+}
+
+html {
+	height: 100vh;
+	width: 100vw;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+	/* overflow: hidden; */
+}
+
+nav {
+	height: var(--nav-height);
+	background: red;
+}
+
+.view {
+	height: calc(100% - var(--nav-height));
+	width: 100%;
+}
+
+.flex {
+	display: flex;
+}
+
+.col {
+	flex-direction: column;
+}

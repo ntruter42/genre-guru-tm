@@ -24,8 +24,9 @@
   },
   "contributors": [],
   "scripts": {
-    "dev": "",
-    "test": ""
+	"start": "node index.js",
+    "dev": "nodemon",
+    "test": "mocha --exit"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
@@ -34,7 +35,9 @@
     "express-flash": "^0.0.2",
     "express-handlebars": "^7.1.2",
     "express-session": "^1.17.3",
-    "mocha": "^10.2.0",
     "pg-promise": "^11.5.4"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
   }
 }
