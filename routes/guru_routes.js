@@ -23,12 +23,12 @@ router.get('/question', async (req, res) => {
 	res.render('questions', {
 		title: "Trivia Question",
 		level: 1,
-		question: 'Who is known as the "King of Pop"?',
+		question: `In R&B, what is the significance of the 'backbeat' and how does it contribute to the genre's distinctive rhythm?`,
 		options: [
-			{ option_id: 1, answer: "Elvis Presley" },
-			{ option_id: 2, answer: "Michael Jackson" },
-			{ option_id: 3, answer: "Madonna" },
-			{ option_id: 4, answer: "Whitney Houston" }
+			{ option_id: 1, answer: "The backbeat emphasizes the second and fourth beats of a measure, creating a syncopated feel." },
+			{ option_id: 2, answer: "The backbeat highlights the first and third beats of a measure, establishing a steady rhythmic pattern." },
+			{ option_id: 3, answer: "The backbeat occurs on every beat, creating a straightforward and predictable rhythm." },
+			{ option_id: 4, answer: "The backbeat is absent in R&B, allowing for a free-form and experimental approach to rhythm." }
 		]
 	});
 });

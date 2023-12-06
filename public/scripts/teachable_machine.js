@@ -38,8 +38,6 @@ async function init() {
 		for (let i = 0; i < classLabels.length; i++) {
 			const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
 			labelContainer.childNodes[i].innerHTML = classPrediction;
-			// labelContainer.childNodes[i].innerHTML = listOfScores[i][listOfScores[i].length-1];
-			listOfScores[i].push(result.scores[i]);
 		}
 	}, {
 		includeSpectrogram: true, // in case listen should return result.spectrogram
@@ -49,5 +47,8 @@ async function init() {
 	});
 
 	// Stop the recognition in 5 seconds.
-	setTimeout(() => recognizer.stopListening(), 5000);
+	setTimeout(() => {
+		window.location.href = "https://genre-guru-tm.onrender.com/question";
+		recognizer.stopListening();
+	}, 5000);
 }
