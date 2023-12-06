@@ -13,6 +13,7 @@ CREATE TABLE topic (
 
 CREATE TABLE questions (
     question_id SERIAL PRIMARY KEY,
+    question TEXT NOT Null,
     level INT NOT NULL,
     topic_id INT REFERENCES topic(topic_id)
 );
