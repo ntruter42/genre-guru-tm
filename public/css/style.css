@@ -74,6 +74,14 @@ img {
 	align-items: center;
 }
 
+.middle-self {
+	align-self: center;
+}
+
+.xl-gap {
+	gap: 4em;
+}
+
 .gap {
 	gap: 0.5em;
 }

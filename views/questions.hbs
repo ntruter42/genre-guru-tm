@@ -1,30 +1,23 @@
-<div class="flex col view">
+<div class="flex col xl-gap center middle view">
+	<h1>
+		<h1>GenreGuru - {{title}} - Level {{level}}</h1>
+	</h1>
 
-    <form action="/questions" method="post">
-        <div class="question-container">
-            <h2>Who is known as the "King of Pop"?</h2>
+	<form action="/question" method="post">
+		<div class="flex col gap">
+			<h3>{{question}}</h3>
 
-            <div class="options-container">
-                <div class="option">
-                    <input type="radio" name="answer" id="optionA" value="A">
-                    <label for="optionA">A) Elvis Presley</label>
-                </div>
-                <div class="option">
-                    <input type="radio" name="answer" id="optionB" value="B">
-                    <label for="optionB">B) Michael Jackson</label>
-                </div>
-                <div class="option">
-                    <input type="radio" name="answer" id="optionC" value="C">
-                    <label for="optionC">C) Madonna</label>
-                </div>
-                <div class="option">
-                    <input type="radio" name="answer" id="optionD" value="D">
-                    <label for="optionD">D) Whitney Houston</label>
-                </div>
-            </div>
+			<div class="">
+				{{#each options}}
+				<div class="option">
+					<input type="radio" name="answer" id="{{option_id}}" value="A">
+					<label for="{{option_id}}">{{answer}}</label>
+				</div>
+				{{/each}}
+			</div>
 
-            <button class="submit-btn" onclick="submitAnswer()">Submit Answer</button>
-        </div>
-    </form>
+			<button class="w-2 middle-self" onclick="">Submit Answer</button>
+		</div>
+	</form>
 
 </div>
