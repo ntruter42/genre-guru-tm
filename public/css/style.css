@@ -30,9 +30,32 @@ nav {
 	background: red;
 }
 
+button {
+	border-radius: 50%;
+	padding: 0.5em 1em;
+}
+
+img {
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.listen-button {
+	width: 15em;
+	height: 15em;
+}
+
 .view {
 	height: calc(100% - var(--nav-height));
 	width: 100%;
+}
+
+.w-1 {
+	width: 100%;
+}
+
+.w-2 {
+	width: 50%;
 }
 
 .flex {
@@ -41,4 +64,28 @@ nav {
 
 .col {
 	flex-direction: column;
+}
+
+.center {
+	justify-content: center;
+}
+
+.middle {
+	align-items: center;
+}
+
+.gap {
+	gap: 0.5em;
+}
+
+.gap>.gap {
+	gap: 1em;
+}
+
+.gap>.gap>.gap {
+	gap: 2em;
+}
+
+.gap>.gap>.gap>.gap {
+	gap: 4em;
 }
