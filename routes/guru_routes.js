@@ -13,6 +13,8 @@ router.get('/', async (req, res) => {
 		console.error(error);
 		res.redirect('/');
 	}
+	
 });
+
 
 export default router;
