@@ -16,9 +16,9 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/question', async (req, res) => {
-	const song = await getSong(req.params.song_name);
-	const user = await services.getUser(req.session.user_id);
-	const question = await services.getQuestion(song.genre_id, user.level);
+	// const song = await getSong(req.params.song_name);
+	// const user = await services.getUser(req.session.user_id);
+	// const question = await services.getQuestion(song.genre_id, user.level);
 
 	res.render('questions', {
 		title: "Trivia Question",
@@ -34,7 +34,7 @@ router.get('/question', async (req, res) => {
 });
 
 router.post('/question', async (req, res) => {
-	const nextQuestion = await services.nextQuestion();
+	// const nextQuestion = await services.nextQuestion();
 	res.redirect('/question');
 });
 
