@@ -5,7 +5,14 @@ export default function (db) {
 		return true;
 	}
 
+	async function getAnswers() {
+		let query = ``;
+
+		return true;
+	}
+
 	return {
-		returnTrue
+		returnTrue,
+		getAnswers
 	};
 }
