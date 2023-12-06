@@ -1,7 +1,7 @@
 // more documentation available at
 // https://github.com/tensorflow/tfjs-models/tree/master/speech-commands
 
-let song = [];
+let song;
 // the link to your model provided by Teachable Machine export panel
 const URL = "https://teachablemachine.withgoogle.com/models/On9QTVQmM/";
 
@@ -36,9 +36,8 @@ async function init() {
 		const scores = result.scores; // probability of prediction for each class
 		// render the probability scores per class
 		for (let i = 0; i < classLabels.length; i++) {
-			const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
+			const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2) * 100 + "%";
 			labelContainer.childNodes[i].innerHTML = classPrediction;
-
 		}
 	}, {
 		includeSpectrogram: true, // in case listen should return result.spectrogram
@@ -50,3 +49,5 @@ async function init() {
 	// Stop the recognition in 5 seconds.
 	setTimeout(() => recognizer.stopListening(), 5000);
 }
+
+console.log();
