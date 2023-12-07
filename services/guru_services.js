@@ -6,7 +6,7 @@ export default function (db) {
     return result;
   }
 
-  async function getQuestions(genre_id, level) {
+  async function getQuestion(genre_id, level) {
     let query = `SELECT * FROM guru.questions ORDER BY RANDOM() LIMIT 1`;
 
     const result = db.any(query)[0];
@@ -15,6 +15,6 @@ export default function (db) {
 
   return {
     returnTrue,
-	getQuestions
+	getQuestion
   };
 }
