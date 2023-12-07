@@ -1,0 +1,402 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+	--primary-bg: #F5E6E8;
+	--secondary-bg: #D5C6E0;
+	--tertiary-bg: #AAA1C8;
+
+	--primary-fg: #967AA1;
+	--secondary-fg: #2E3D61;
+	--tertiary-fg: #192A51;
+
+	--accent-1: #80F;
+	--accent-2: #FAA;
+	--accent-3: #0FF;
+
+	--error-bg: #FDD;
+	--error-fg: #C04;
+	--warning-bg: #FED;
+	--warning-fg: #A60;
+	--success-bg: #EFE;
+	--success-fg: #284;
+	--info-bg: #DEF;
+	--info-fg: #48C;
+
+	--nav-height: 2em;
+	--button-size: 10em;
+	--page-width: 1280px;
+
+	font-size: 30px;
+	font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+*,
+*:before,
+*:after {
+	outline: none;
+	border: none;
+
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+
+	text-decoration: none;
+	list-style: none;
+}
+
+// ==================== MAIN ==================== //
+
+html {
+	height: 100vh;
+	width: 100vw;
+}
+
+body {
+	background: var(--primary-bg);
+
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+nav {
+	background: var(--primary-bg);
+	box-shadow: 0 0 1em;
+
+	height: var(--nav-height);
+
+	z-index: 3;
+}
+
+a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+// ==================== IMAGES ==================== //
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+// ==================== BUTTONS ==================== //
+
+button {
+	background: var(--secondary-bg);
+	border-radius: 0.25em;
+	padding: 0.5em 1em;
+}
+
+button:hover {
+	filter: brightness(0.9);
+}
+
+button:active {
+	filter: brightness(0.8);
+}
+
+button[name="listen"] {
+	border-radius: 50%;
+
+	height: var(--button-size);
+	width: var(--button-size);
+}
+
+// ==================== LAYOUT ==================== //
+
+.view {
+	height: calc(100% - var(--nav-height));
+	width: 100%;
+	max-width: var(--page-width);
+}
+
+.scroll {
+	overflow: auto;
+}
+
+.relative {
+	position: relative;
+}
+
+.fixed {
+	position: fixed;
+}
+
+.absolute {
+	position: absolute;
+}
+
+$pad-sizes: (
+	"xs-",
+	"s-",
+	"",
+	"l-",
+	"xl-"
+);
+$pad-values: (
+	0.125,
+	0.25,
+	0.5,
+	1,
+	2
+);
+$pad-dimensions: (
+	"",
+	"h-",
+	"w-"
+);
+$pad-properties: (
+	"",
+	"-block",
+	"-inline"
+);
+
+@for $j from 1 through length($pad-properties) {
+	@for $i from 1 through length($pad-values) {
+		$value: nth($pad-values, $i);
+		$prefix: nth($pad-sizes, $i) + nth($pad-dimensions, $j);
+		$property: nth($pad-properties, $j);
+
+		.#{$prefix}pad {
+			padding#{$property}: #{$value}em;
+		}
+	}
+}
+
+.flex {
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+.flex.col {
+	flex-direction: column;
+}
+
+.flex.row {
+	flex-direction: row;
+}
+
+.flex.wrap {
+	flex-wrap: wrap;
+}
+
+.flex.middle {
+	align-items: center;
+}
+
+.flex>stretch {
+	flex: 1;
+}
+
+.flex>grow {
+	flex-grow: 1;
+}
+
+$gap-sizes: (
+	"xs-",
+	"s-",
+	"",
+	"l-",
+	"xl-"
+);
+$gap-values: (
+	0.125,
+	0.25,
+	0.5,
+	1,
+	2
+);
+
+@for $i from 1 through length($gap-sizes) {
+	$gap-value: nth($gap-values, $i);
+	$gap-prefix: nth($gap-sizes, $i);
+
+	.flex.#{$gap-prefix}gap {
+		gap: #{$gap-value}em;
+	}
+}
+
+$justify-positions: (
+	"center",
+	"between",
+	"even",
+	"start",
+	"end"
+);
+$justify-values: (
+	center,
+	space-between,
+	space-evenly,
+	start,
+	end
+);
+
+@for $i from 1 through length($justify-positions) {
+	$class: nth($justify-positions, $i);
+	$value: nth($justify-values, $i);
+
+	.flex.#{$class} {
+		justify-content: #{$value};
+	}
+}
+
+@for $i from 1 through 20 {
+	.mw-#{$i} {
+		width: $i * 1em;
+	}
+
+	.mh-#{$i} {
+		height: $i * 1em;
+	}
+}
+
+@for $i from 1 through 10 {
+	.w-#{$i} {
+		width: calc(100% / $i);
+	}
+
+	.h-#{$i} {
+		height: calc(100% / $i);
+	}
+}
+
+@for $i from 3 through 19 {
+	.w-#{$i * 5} {
+		width: $i * 5%;
+	}
+
+	.h-#{$i * 5} {
+		height: $i * 5%;
+	}
+}
+
+.h.fit {
+	height: fit-content;
+}
+
+.w-fit {
+	width: fit-content;
+}
+
+// ==================== TEXT ==================== //
+
+.c-text {
+	text-align: center;
+}
+
+.r-text {
+	text-align: end;
+}
+
+$heading-sizes: 4, 3, 2.5, 2, 1.5, 1.25;
+
+@for $i from 1 through length($heading-sizes) {
+	h#{$i} {
+		font-size: nth($heading-sizes, $i) + em;
+		font-weight: normal;
+		user-select: none;
+	}
+}
+
+$text-sizes: (
+	"xxs",
+	"xs",
+	"s",
+	"l",
+	"xl",
+	"xxl"
+);
+$text-values: (
+	0.25,
+	0.5,
+	0.75,
+	1.5,
+	2,
+	3
+);
+
+@for $i from 1 through length($text-sizes) {
+	$text-value: nth($text-values, $i);
+	$text-prefix: nth($text-sizes, $i);
+
+	.#{$text-prefix}-text {
+		font-size: #{$text-value}em;
+	}
+}
+
+// ==================== MESSAGES ==================== //
+
+.message {
+	background: white;
+	color: black;
+	border: 1px solid black;
+	border-radius: 0.25em;
+
+	height: fit-content;
+	width: fit-content;
+	max-width: 100%;
+	padding: 0.5em 1em;
+	text-align: center;
+
+	overflow: hidden;
+}
+
+.message.error {
+	background: var(--error-bg);
+	color: var(--error-fg);
+	border-color: var(--error-fg);
+}
+
+.message.warning {
+	background: var(--warning-bg);
+	color: var(--warning-fg);
+	border-color: var(--warning-fg);
+}
+
+.message.success {
+	background: var(--success-bg);
+	color: var(--success-fg);
+	border-color: var(--success-fg);
+}
+
+.message.info {
+	background: var(--info-bg);
+	color: var(--info-fg);
+	border-color: var(--info-fg);
+}
+
+// ==================== FUNCTIONALITY ==================== //
+
+.invisible {
+	opacity: 0;
+}
+
+.inactive {
+	pointer-events: none;
+}
+
+.hidden {
+	display: none;
+}
+
+// ========== TEMPORARY (remove for deployment) ========== //
+
+$outline-colors: (
+	"red",
+	"green",
+	"blue",
+
+	"yellow",
+	"cyan",
+	"magenta"
+);
+
+@for $i from 1 through length($outline-colors) {
+	$class: str-slice(nth($outline-colors, $i), 1, 1) + "-out";
+	$value: nth($outline-colors, $i);
+
+	.#{$class} {
+		outline: 1px solid #{$value};
+	}
+}

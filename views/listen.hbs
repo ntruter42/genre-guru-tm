@@ -1,16 +1,22 @@
-<div class="flex col gap center middle view">
+<div class="flex col xl-gap center middle view">
 
-	<div class="flex col gap center middle w-2">
-		<h1>
-			<span>GenreGuru</span>
-			<span class="noun">{{noun}}</span>
-			<span class="action">{{action}}</span>
-		</h1>
+	{{#if again}}
+	<div class="c-text l-text w-2 title">Try again...</div>
+	{{else}}
+	<div class="c-text l-text w-2 title"><b>GenreGuru</b> wants<br>to <i>hear a song</i></div>
+	{{/if}}
 
-		<button class="listen-button" type="button" onclick="clickListenButton()">
-			<img src="/assets/genre-guru-logo.png" alt="">
+	<div class="flex col middle">
+
+		<button name="listen" onclick="init()">
+			<img style="white-space: pre-line" src="/assets/logos/genre-guru-logo.jng" alt="Listen">
 		</button>
-		<div id="label-container"></div>
+
+		<div class="xl-text arrow">⬆</div>
+		<div class="guru-message">CLICK THIS BUTTON</div>
+
 	</div>
+
+	<div id="label-container"></div>
 
 </div>

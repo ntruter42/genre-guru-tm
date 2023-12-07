@@ -5,10 +5,9 @@ const router = Router();
 
 router.get('/', async (req, res) => {
 	try {
-		console.log(await services.returnTrue());
 		res.render('listen', {
-			noun: "wants to",
-			action: "listen"
+			title: "Listen",
+			again: req.flash('again')[0] ? true : false
 		});
 	} catch (error) {
 		console.error(error);
@@ -16,29 +15,36 @@ router.get('/', async (req, res) => {
 	}
 });
 
-router.get('/question', async (req, res) => {
-	// const song = await getSong(req.params.song_name);
-	// const user = await services.getUser(req.session.user_id);
-	// const question = await services.getQuestion(song.genre_id, user.level);
+router.get('/again', async (req, res) => {
+	try {
+		req.flash('again', "true");
+		res.redirect('/');
+	} catch (error) {
+		console.error(error);
+		res.redirect('/');
+	}
+});
 
-	res.render('questions', {
-		noun: "is",
-		action: "Question",
-		level: 1,
-		question: 
-			`In R&B, what is the significance of the 'backbeat' and how does it contribute to the genre's distinctive rhythm?`,
-		options: [
-			{ option_id: 1, answer: "The backbeat emphasizes the second and fourth beats of a measure, creating a syncopated feel." },
-			{ option_id: 2, answer: "The backbeat highlights the first and third beats of a measure, establishing a steady rhythmic pattern." },
-			{ option_id: 3, answer: "The backbeat occurs on every beat, creating a straightforward and predictable rhythm." },
-			{ option_id: 4, answer: "The backbeat is absent in R&B, allowing for a free-form and experimental approach to rhythm." }
-		]
+router.get('/question', async (req, res) => {
+	const song = await getSong(req.query.song_name);
+	const question = await services.getQuestion(song.genre_id, user.level);
+	// const user = await services.getUser(req.session.user_id);
+
+	res.render('question', {
+		title: "Question",
+		question
 	});
 });
 
 router.post('/question', async (req, res) => {
 	// const nextQuestion = await services.nextQuestion();
 	res.redirect('/question');
+});
+
+router.post('/song', async (req, res) => {
+	const song_name = req.body.song_name;
+
+	res.json({ link: `${process.env.DOMAIN}/question?song=${song_name}` });
 });
 
 

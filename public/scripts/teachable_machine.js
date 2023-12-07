@@ -21,29 +21,28 @@ async function createModel() {
 	return recognizer;
 }
 
+let highest = [];
 async function init() {
+	document.querySelector(".title").innerHTML = "<b>GenreGuru</b> is <i>listening</i>...";
+	document.querySelector(".arrow").innerHTML = "♫";
 	const recognizer = await createModel();
 	const classLabels = recognizer.wordLabels(); // get class labels
-	const labelContainer = document.getElementById("label-container");
-	for (let i = 0; i < classLabels.length; i++) {
-		labelContainer.appendChild(document.createElement("div"));
-	}
+	// const labelContainer = document.getElementById("label-container");
+	// for (let i = 0; i < classLabels.length; i++) {
+		// 	labelContainer.appendChild(document.createElement("div"));
+	// }
 
-	// listen() takes two arguments:
-	// 1. A callback function that is invoked anytime a word is recognized.
-	// 2. A configuration object with adjustable fields
-	// let high = [];
 	recognizer.listen(result => {
-		// console.log(result);
 		const scores = result.scores; // probability of prediction for each class
+		highest = [];
 		// render the probability scores per class
 		for (let i = 0; i < classLabels.length; i++) {
-			const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
-			labelContainer.childNodes[i].innerHTML = classPrediction;
-			// if (result.scores[i].toFixed(2) >= 0.90) {
-			// 	high.push(classLabels[i]);
-			// 	console.log(high);
-			// }
+			// const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
+			if (result.scores[i].toFixed(2) >= 0.85) {
+				highest.push(classLabels[i]);
+			}
+			document.querySelector(".arrow").innerHTML = "⬇";
+			document.querySelector(".guru-message").innerHTML = "Sounds like <b><i>" + (findMostProbableSong(highest) || "nothing that I recognize.</i></b>");
 		}
 	}, {
 		includeSpectrogram: true, // in case listen should return result.spectrogram
@@ -53,12 +52,45 @@ async function init() {
 	});
 
 	// Stop the recognition in 5 seconds.
-	setTimeout(() => recognizer.stopListening(), 5000);
+	setTimeout(function () {
+		const song_name = findMostProbableSong(highest);
+		if (song_name && song_name !== "Background Noise") {
+			// axios.post('https://genre-guru-tm.onrender.com/song', {
+			axios.post('http://localhost:3000/song', {
+				song_name
+			})
+				.then(function (response) {
+					// console.log('Response:', response.data);
+					window.location.href = response.data.link;
+				})
+				.catch(function (error) {
+					console.error('Error making POST request:', error);
+				});
+			recognizer.stopListening();
+		} else {
+			window.location.href = "http://localhost:3000/again"
+		}
+	}, 5000);
 }
 
+function findMostProbableSong(songPredictions) {
+	var freq = {};
+	var threshold = songPredictions.length * 0.5;
 
-function clickListenButton() {
-	init();
-	isListening();
-	setTimeout(() => window.location.href = "https://genre-guru-tm.onrender.com/question", 8000);
+	for (var i = 0; i < songPredictions.length; i++) {
+		var word = songPredictions[i];
+		freq[word] = (freq[word] || 0) + 1;
+	}
+
+	var mostRepeatedWord = '';
+	var maxFrequency = 0;
+
+	for (var word in freq) {
+		if (freq.hasOwnProperty(word) && freq[word] > threshold && freq[word] > maxFrequency) {
+			mostRepeatedWord = word;
+			maxFrequency = freq[word];
+		}
+	}
+
+	return mostRepeatedWord;
 }

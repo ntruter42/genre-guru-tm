@@ -3,11 +3,11 @@
 		<h1>GenreGuru - {{capitalize action}} - Level {{level}}</h1>
 	</h1>
 
-	<form class="flex col middle" action="/question" method="post">
+	<form class="flex col middle w-1" action="/question" method="post">
 		<div class="flex col gap middle w-2">
 			<h3>{{question}}</h3>
 
-			<div class="flex col gap center wrap middle">
+			<div class="flex col gap center w-1 wrap middle">
 				{{#each options}}
 				<button class="w-2" id="{{option_id}}" style="border-radius: 0.25em;">
 					{{answer}}
