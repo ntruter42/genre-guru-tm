@@ -11,9 +11,32 @@ CREATE TABLE topic (
     topic_type TEXT NOT NULL
 );
 
+CREATE TABLE songs (
+    song_id SERIAL PRIMARY KEY,
+	title TEXT NOT NULL,
+    artist_id INT NOT NULL,
+	genre_id INT NOT NULL
+);
+
+--  artist_id = topic_id
+CREATE TABLE artist (
+    artist_id SERIAL PRIMARY KEY,
+	name TEXT NOT NULL
+);
+
+-- genre_id = topic_id
+CREATE TABLE genres (
+    genre_id SERIAL PRIMARY KEY,
+	name TEXT NOT NULL
+);
+
 CREATE TABLE questions (
     question_id SERIAL PRIMARY KEY,
+<<<<<<< HEAD
     question TEXT NOT Null,
+=======
+    question TEXT NOT NULL,
+>>>>>>> a32789573a3e322f1b017fa3c6dfa4d46d88146a
     level INT NOT NULL,
     topic_id INT REFERENCES topic(topic_id)
 );
