@@ -1,8 +1,5 @@
 export default function (db) {
 
-	var questions = [
-		
-	]
 
 	async function returnTrue() {
 		let query = ``;
