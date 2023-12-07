@@ -6,8 +6,15 @@ export default function (db) {
 		return result;
 	}
 
+	async function getAnswers() {
+		let query = ``;
+
+		return true;
+	}
+
 	return {
-		returnTrue
+		returnTrue,
+		getAnswers
 	};
 }
 function storeSongData(title, artist, genre) {

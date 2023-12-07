@@ -32,7 +32,11 @@ CREATE TABLE guru.genres (
 
 CREATE TABLE guru.questions (
     question_id SERIAL PRIMARY KEY,
+<<<<<<< HEAD
+    question TEXT NOT Null,
+=======
     question TEXT NOT NULL,
+>>>>>>> a32789573a3e322f1b017fa3c6dfa4d46d88146a
     level INT NOT NULL,
     genre_id INT REFERENCES guru.genres(genre_id)
 );
