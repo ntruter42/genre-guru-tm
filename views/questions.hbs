@@ -1,22 +1,21 @@
 <div class="flex col xl-gap center middle view">
 	<h1>
-		<h1>GenreGuru - {{title}} - Level {{level}}</h1>
+		<h1>GenreGuru - {{capitalize action}} - Level {{level}}</h1>
 	</h1>
 
-	<form action="/question" method="post">
-		<div class="flex col gap">
+	<form class="flex col middle" action="/question" method="post">
+		<div class="flex col gap middle w-2">
 			<h3>{{question}}</h3>
 
-			<div class="">
+			<div class="flex col gap center wrap middle">
 				{{#each options}}
-				<div class="option">
-					<input type="radio" name="answer" id="{{option_id}}" value="A">
-					<label for="{{option_id}}">{{answer}}</label>
-				</div>
+				<button class="w-2" id="{{option_id}}" style="border-radius: 0.25em;">
+					{{answer}}
+				</button>
 				{{/each}}
 			</div>
 
-			<button class="w-2 middle-self" onclick="">Submit Answer</button>
+			{{!-- <button class="w-2 middle-self" onclick="">Submit Answer</button> --}}
 		</div>
 	</form>
 

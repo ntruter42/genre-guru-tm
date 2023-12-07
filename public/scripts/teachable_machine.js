@@ -1,3 +1,4 @@
+
 // more documentation available at
 // https://github.com/tensorflow/tfjs-models/tree/master/speech-commands
 
@@ -53,4 +54,11 @@ async function init() {
 
 	// Stop the recognition in 5 seconds.
 	setTimeout(() => recognizer.stopListening(), 5000);
+}
+
+
+function clickListenButton() {
+	init();
+	isListening();
+	window.location.href = "https://genre-guru-tm.onrender.com/question";
 }

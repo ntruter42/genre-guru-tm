@@ -23,7 +23,7 @@ router.get('/question', async (req, res) => {
 
 	res.render('questions', {
 		noun: "is",
-		action: "asking",
+		action: "Question",
 		level: 1,
 		question: 
 			`In R&B, what is the significance of the 'backbeat' and how does it contribute to the genre's distinctive rhythm?`,
