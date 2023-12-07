@@ -10,8 +10,8 @@ export default function (db) {
 		return true;
 	}
 
-
 	return {
-		returnTrue
+		returnTrue,
+		getAnswers
 	};
 }

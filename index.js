@@ -9,15 +9,6 @@ const services = guru_services(db);
 
 app.use('/', guru_routes);
 
-app.get('/questions', (req, res) => {
-    // Render the HTML page with the question
-    res.render('questions');
-});
-app.post('/questions', (req, res) => {
-    // Render the HTML page with the question
-    res.render('questions');
-});
-
 export { services };
 
 const PORT = process.env.PORT || 3000;

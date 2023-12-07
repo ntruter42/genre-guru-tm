@@ -31,20 +31,18 @@ async function init() {
 	// listen() takes two arguments:
 	// 1. A callback function that is invoked anytime a word is recognized.
 	// 2. A configuration object with adjustable fields
-	let average;
+	// let high = [];
 	recognizer.listen(result => {
+		// console.log(result);
 		const scores = result.scores; // probability of prediction for each class
 		// render the probability scores per class
 		for (let i = 0; i < classLabels.length; i++) {
 			const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
 			labelContainer.childNodes[i].innerHTML = classPrediction;
-		}
-		for (let i = 0; i < scores.length; i++) {
-			if (!average[i]) {
-				average.push(scores[i]);
-			} else {
-				average[i] += scores[i];
-			}
+			// if (result.scores[i].toFixed(2) >= 0.90) {
+			// 	high.push(classLabels[i]);
+			// 	console.log(high);
+			// }
 		}
 	}, {
 		includeSpectrogram: true, // in case listen should return result.spectrogram
@@ -53,13 +51,6 @@ async function init() {
 		overlapFactor: 0.50 // probably want between 0.5 and 0.75. More info in README
 	});
 
-	for (let i = 0; i < scores.length; i++) {
-		average[i] = average[i] / scores.length;
-	}
-
 	// Stop the recognition in 5 seconds.
-	setTimeout(() => {
-		console.log(average);
-		recognizer.stopListening()
-	}, 5000);
+	setTimeout(() => recognizer.stopListening(), 5000);
 }

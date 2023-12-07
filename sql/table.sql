@@ -1,54 +1,58 @@
-CREATE TABLE users (
+CREATE TABLE guru.users (
     user_id SERIAL PRIMARY KEY,
     username TEXT NOT NULL,
     password TEXT NOT NULL,
     level INT NOT NULL
 );
 
-CREATE TABLE topic (
-    topic_id SERIAL PRIMARY KEY,
-    topic_name TEXT NOT NULL,
-    topic_type TEXT NOT NULL
-);
+-- CREATE TABLE guru.topic (
+--     topic_id SERIAL PRIMARY KEY,
+--     topic_name TEXT NOT NULL,
+--     topic_type TEXT NOT NULL
+-- );
 
-CREATE TABLE songs (
+CREATE TABLE guru.songs (
     song_id SERIAL PRIMARY KEY,
 	title TEXT NOT NULL,
-    artist_id INT NOT NULL,
+    -- artist_id INT NOT NULL,
 	genre_id INT NOT NULL
 );
 
 --  artist_id = topic_id
-CREATE TABLE artist (
-    artist_id SERIAL PRIMARY KEY,
-	name TEXT NOT NULL
-);
+-- CREATE TABLE guru.artist (
+--     artist_id SERIAL PRIMARY KEY,
+-- 	name TEXT NOT NULL
+-- );
 
 -- genre_id = topic_id
-CREATE TABLE genres (
+CREATE TABLE guru.genres (
     genre_id SERIAL PRIMARY KEY,
 	name TEXT NOT NULL
 );
 
-CREATE TABLE questions (
+CREATE TABLE guru.questions (
     question_id SERIAL PRIMARY KEY,
+<<<<<<< HEAD
+    question TEXT NOT Null,
+=======
     question TEXT NOT NULL,
+>>>>>>> a32789573a3e322f1b017fa3c6dfa4d46d88146a
     level INT NOT NULL,
-    topic_id INT REFERENCES topic(topic_id)
+    genre_id INT REFERENCES guru.genres(genre_id)
 );
 
-CREATE TABLE answers (
+CREATE TABLE guru.answers (
     answer_id SERIAL PRIMARY KEY,
-    question_id INT REFERENCES questions(question_id),
+    question_id INT REFERENCES guru.questions(question_id),
     correct_choice TEXT NOT NULL
 );
 
-CREATE TABLE choice (
+CREATE TABLE guru.choice (
     choice_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(user_id),
+    user_id INT REFERENCES guru.users(user_id),
     question_id INT,
     answer_id INT,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (question_id) REFERENCES questions(question_id),
-    FOREIGN KEY (answer_id) REFERENCES answers(answer_id)
+    FOREIGN KEY (user_id) REFERENCES guru.users(user_id),
+    FOREIGN KEY (question_id) REFERENCES guru.questions(question_id),
+    FOREIGN KEY (answer_id) REFERENCES guru.answers(answer_id)
 );

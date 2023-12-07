@@ -1,9 +1,13 @@
 <div class="flex col gap center middle view">
 
 	<div class="flex col gap center middle w-2">
-		<h1>GenreGuru</h1>
+		<h1>
+			<span>GenreGuru</span>
+			<span class="noun">{{noun}}</span>
+			<span class="action">{{action}}</span>
+		</h1>
 
-		<button class="listen-button" type="button" onclick="init()">
+		<button class="listen-button" type="button" onclick="() => {init(); isListening();}">
 			<img src="/assets/genre-guru-logo.png" alt="">
 		</button>
 		<div id="label-container"></div>
