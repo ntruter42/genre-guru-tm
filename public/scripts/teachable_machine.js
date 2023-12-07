@@ -60,5 +60,5 @@ async function init() {
 function clickListenButton() {
 	init();
 	isListening();
-	window.location.href = "https://genre-guru-tm.onrender.com/question";
+	setTimeout(() => window.location.href = "https://genre-guru-tm.onrender.com/question", 8000);
 }
