@@ -22,7 +22,11 @@ export default function App() {
 		defaultLayout: 'main.hbs',
 		viewPath: './views',
 		layoutsDir: './views/layouts',
-		helpers: {}
+		helpers: {
+			capitalize: function (str) {
+				return str.charAt(0).toUpperCase() + str.slice(1);
+			}
+		}
 	}));
 	app.set('view engine', 'hbs');
 

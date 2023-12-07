@@ -5,24 +5,24 @@ CREATE TABLE guru.users (
     level INT NOT NULL
 );
 
-CREATE TABLE guru.topic (
-    topic_id SERIAL PRIMARY KEY,
-    topic_name TEXT NOT NULL,
-    topic_type TEXT NOT NULL
-);
+-- CREATE TABLE guru.topic (
+--     topic_id SERIAL PRIMARY KEY,
+--     topic_name TEXT NOT NULL,
+--     topic_type TEXT NOT NULL
+-- );
 
 CREATE TABLE guru.songs (
     song_id SERIAL PRIMARY KEY,
 	title TEXT NOT NULL,
-    artist_id INT NOT NULL,
+    -- artist_id INT NOT NULL,
 	genre_id INT NOT NULL
 );
 
 --  artist_id = topic_id
-CREATE TABLE guru.artist (
-    artist_id SERIAL PRIMARY KEY,
-	name TEXT NOT NULL
-);
+-- CREATE TABLE guru.artist (
+--     artist_id SERIAL PRIMARY KEY,
+-- 	name TEXT NOT NULL
+-- );
 
 -- genre_id = topic_id
 CREATE TABLE guru.genres (
@@ -34,7 +34,7 @@ CREATE TABLE guru.questions (
     question_id SERIAL PRIMARY KEY,
     question TEXT NOT NULL,
     level INT NOT NULL,
-    topic_id INT REFERENCES guru.topic(topic_id)
+    genre_id INT REFERENCES guru.genres(genre_id)
 );
 
 CREATE TABLE guru.answers (

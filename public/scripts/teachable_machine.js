@@ -20,7 +20,6 @@ async function createModel() {
 	return recognizer;
 }
 
-let average;
 async function init() {
 	const recognizer = await createModel();
 	const classLabels = recognizer.wordLabels(); // get class labels
@@ -32,12 +31,18 @@ async function init() {
 	// listen() takes two arguments:
 	// 1. A callback function that is invoked anytime a word is recognized.
 	// 2. A configuration object with adjustable fields
+	// let high = [];
 	recognizer.listen(result => {
+		// console.log(result);
 		const scores = result.scores; // probability of prediction for each class
 		// render the probability scores per class
 		for (let i = 0; i < classLabels.length; i++) {
 			const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
 			labelContainer.childNodes[i].innerHTML = classPrediction;
+			// if (result.scores[i].toFixed(2) >= 0.90) {
+			// 	high.push(classLabels[i]);
+			// 	console.log(high);
+			// }
 		}
 	}, {
 		includeSpectrogram: true, // in case listen should return result.spectrogram
@@ -47,8 +52,5 @@ async function init() {
 	});
 
 	// Stop the recognition in 5 seconds.
-	setTimeout(() => {
-		window.location.href = "https://genre-guru-tm.onrender.com/question";
-		recognizer.stopListening();
-	}, 5000);
+	setTimeout(() => recognizer.stopListening(), 5000);
 }

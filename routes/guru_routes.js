@@ -7,7 +7,8 @@ router.get('/', async (req, res) => {
 	try {
 		console.log(await services.returnTrue());
 		res.render('listen', {
-			action: "listening"
+			noun: "wants to",
+			action: "listen"
 		});
 	} catch (error) {
 		console.error(error);
@@ -21,9 +22,11 @@ router.get('/question', async (req, res) => {
 	// const question = await services.getQuestion(song.genre_id, user.level);
 
 	res.render('questions', {
+		noun: "is",
 		action: "asking",
 		level: 1,
-		question: `In R&B, what is the significance of the 'backbeat' and how does it contribute to the genre's distinctive rhythm?`,
+		question: 
+			`In R&B, what is the significance of the 'backbeat' and how does it contribute to the genre's distinctive rhythm?`,
 		options: [
 			{ option_id: 1, answer: "The backbeat emphasizes the second and fourth beats of a measure, creating a syncopated feel." },
 			{ option_id: 2, answer: "The backbeat highlights the first and third beats of a measure, establishing a steady rhythmic pattern." },
