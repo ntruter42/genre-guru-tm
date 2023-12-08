@@ -44,7 +44,7 @@ export default function (db) {
             ORDER BY random()
             LIMIT 1;
         `;
-		const params = [level, 4];
+		const params = [level, genre_id];
 
 		const result = await db.oneOrNone(query, params);
 		return result;

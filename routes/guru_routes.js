@@ -27,8 +27,8 @@ router.get('/again', async (req, res) => {
 
 router.get('/question', async (req, res) => {
 		const user = await services.getUser(1);
-		let song = await services.getSong(req.query.song);
-		const question = await services.getQuestion(song.genre_id, user.level);
+		let song = await services.getSong("Bob Marley - Three Little Birds");
+		const question = await services.getQuestion(4, user.level);
 		const options = await services.getOptions(question.question_id);
 		await services.setLastSong(req.query.song, 1);
 
