@@ -26,7 +26,6 @@ router.get('/again', async (req, res) => {
 });
 
 router.get('/question', async (req, res) => {
-	try {
 		const user = await services.getUser(1);
 		let song = await services.getSong(req.query.song);
 		const question = await services.getQuestion(song.genre_id, user.level);
@@ -38,10 +37,6 @@ router.get('/question', async (req, res) => {
 			question,
 			options
 		});
-	} catch (error) {
-		console.error(error);
-		res.redirect('/');
-	}
 });
 
 router.post('/answer/:question_id', async (req, res) => {

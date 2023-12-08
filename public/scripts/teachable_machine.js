@@ -73,7 +73,8 @@ async function init() {
 				});
 			recognizer.stopListening();
 		} else {
-			window.location.href = domain + "/again"
+			window.location.href = domain + "/question?song=Bob Marley - Three Little Birds"
+			// window.location.href = domain + "/again"
 		}
 	}, 5000);
 }
