@@ -87,7 +87,7 @@ router.get('/answer', async (req, res) => {
 router.post('/song', async (req, res) => {
 	const song_name = req.body.song_name;
 
-	res.json({ link: `${process.env.DOMAIN}/question?song=${song_name}` });
+	res.json({ link: `${process.env.DOMAIN}/question?song="${song_name}"` });
 });
 
 

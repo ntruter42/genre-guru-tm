@@ -4,8 +4,9 @@
 
 // the link to your model provided by Teachable Machine export panel
 
+// const domain = "http://localhost:3000/"
 const domain = 'https://genre-guru-tm.onrender.com';
-const URL = "https://teachablemachine.withgoogle.com/models/4JUkaXl8U/";
+const URL = "https://teachablemachine.withgoogle.com/models/On9QTVQmM/";
 
 async function createModel() {
 	const checkpointURL = URL + "model.json"; // model topology
@@ -42,7 +43,7 @@ async function init() {
 		// render the probability scores per class
 		for (let i = 0; i < classLabels.length; i++) {
 			// const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
-			if (result.scores[i].toFixed(2) >= 0.7) {
+			if (result.scores[i].toFixed(2) >= 0.8) {
 				highest.push(classLabels[i]);
 			}
 			document.querySelector(".arrow").innerHTML = "⬇";
@@ -74,7 +75,7 @@ async function init() {
 		} else {
 			window.location.href = domain + "/again"
 		}
-	}, 8000);
+	}, 5000);
 }
 
 function findMostProbableSong(songPredictions) {
