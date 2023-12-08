@@ -5,7 +5,7 @@
 // the link to your model provided by Teachable Machine export panel
 
 const domain = 'https://genre-guru-tm.onrender.com';
-const URL = "https://teachablemachine.withgoogle.com/models/iUo28usgQ/";
+const URL = "https://teachablemachine.withgoogle.com/models/4JUkaXl8U/";
 
 async function createModel() {
 	const checkpointURL = URL + "model.json"; // model topology
