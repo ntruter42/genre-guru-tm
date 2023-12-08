@@ -4,8 +4,8 @@
 
 // the link to your model provided by Teachable Machine export panel
 
-// const domain = "http://localhost:3000/"
-const domain = 'https://genre-guru-tm.onrender.com';
+const domain = "http://localhost:3000"
+// const domain = 'https://genre-guru-tm.onrender.com';
 const URL = "https://teachablemachine.withgoogle.com/models/iUo28usgQ/";
 
 async function createModel() {
@@ -43,7 +43,7 @@ async function init() {
 		// render the probability scores per class
 		for (let i = 0; i < classLabels.length; i++) {
 			// const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
-			if (result.scores[i].toFixed(2) >= 0.7) {
+			if (result.scores[i].toFixed(2) >= 0.8) {
 				highest.push(classLabels[i]);
 			}
 			document.querySelector(".arrow").innerHTML = "⬇";
@@ -80,7 +80,7 @@ async function init() {
 
 function findMostProbableSong(songPredictions) {
 	var freq = {};
-	var threshold = songPredictions.length * 0.4;
+	var threshold = songPredictions.length * 0.6;
 
 	for (var i = 0; i < songPredictions.length; i++) {
 		var word = songPredictions[i];
