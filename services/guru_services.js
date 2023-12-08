@@ -20,8 +20,8 @@ export default function (db) {
 	}
 
 	async function getSong(song_name) {
-		const artist = song_name.split('-')[1].trim();
-		const title = song_name.split('-')[0].trim();
+		const artist = song_name.split('-')[0].trim();
+		const title = song_name.split('-')[1].trim();
 
 		const query = `
 		SELECT *

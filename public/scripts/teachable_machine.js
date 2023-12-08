@@ -6,7 +6,7 @@
 
 // const domain = "http://localhost:3000/"
 const domain = 'https://genre-guru-tm.onrender.com';
-const URL = "https://teachablemachine.withgoogle.com/models/On9QTVQmM/";
+const URL = "https://teachablemachine.withgoogle.com/models/iUo28usgQ/";
 
 async function createModel() {
 	const checkpointURL = URL + "model.json"; // model topology
