@@ -58,7 +58,7 @@ async function init() {
 		const song_name = findMostProbableSong(highest);
 		if (song_name && song_name !== "Background Noise") {
 			// axios.post('https://genre-guru-tm.onrender.com/song', {
-			axios.post('http://localhost:3000/song', {
+			axios.post('https://genre-guru-tm.onrender.com/song', {
 				song_name
 			})
 				.then(function (response) {
@@ -70,7 +70,7 @@ async function init() {
 				});
 			recognizer.stopListening();
 		} else {
-			window.location.href = "http://localhost:3000/again"
+			window.location.href = "https://genre-guru-tm.onrender.com//again"
 		}
 	}, 8000);
 }
