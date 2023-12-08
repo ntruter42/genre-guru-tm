@@ -70,7 +70,7 @@ async function init() {
 				});
 			recognizer.stopListening();
 		} else {
-			window.location.href = "https://genre-guru-tm.onrender.com//again"
+			window.location.href = "https://genre-guru-tm.onrender.com/again"
 		}
 	}, 8000);
 }
