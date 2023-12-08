@@ -26,19 +26,62 @@ router.get('/again', async (req, res) => {
 });
 
 router.get('/question', async (req, res) => {
-	const song = await getSong(req.query.song_name);
-	const question = await services.getQuestion(song.genre_id, user.level);
-	// const user = await services.getUser(req.session.user_id);
+	try {
+		const user = await services.getUser(1);
+		let song;
+		if (user.last_song) {
+			song = await services.getSong(user.last_song);
+		} else {
+			song = await services.getSong(req.query.song);
+		}
+		const question = await services.getQuestion(song.genre_id, user.level);
+		const options = await services.getOptions(question.question_id);
+		await services.setLastSong(req.query.song, 1);
 
-	res.render('question', {
-		title: "Question",
-		question
-	});
+		res.render('question', {
+			title: "Question",
+			question,
+			options
+		});
+	} catch (error) {
+		console.error(error);
+		res.redirect('/');
+	}
 });
 
-router.post('/question', async (req, res) => {
-	// const nextQuestion = await services.nextQuestion();
-	res.redirect('/question');
+router.post('/answer/:question_id', async (req, res) => {
+	const question_id = req.params.question_id;
+
+	// const question = await services.getQuestionById(question_id);
+	const options = await services.getOptions(question_id);
+
+	const choice = req.query.answer;
+	if (choice === options.correct_option) {
+		await services.increaseLevel(1);
+		req.flash('answer', "correct! :D");
+	} else {
+		await services.resetLevel(1);
+		await services.resetLastSong(1);
+		req.flash('answer', "incorrect :(");
+		req.flash('correction', options.correct_option);
+	}
+
+	res.redirect('/answer');
+});
+
+router.get('/answer', async (req, res) => {
+	const feedback = req.flash('answer')[0];
+	const correction = req.flash('correction')[0];
+	const className = correction ? "error" : "success";
+	const song_name = await services.getLastSong(1);
+
+	res.render('answer', {
+		title: "Answer",
+		feedback,
+		correction,
+		className,
+		song_name
+	});
 });
 
 router.post('/song', async (req, res) => {

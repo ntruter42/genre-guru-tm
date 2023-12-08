@@ -1,0 +1,1 @@
+INSERT INTO guru.users (username, level, points) VALUES ('ntruter42', 1, 0);

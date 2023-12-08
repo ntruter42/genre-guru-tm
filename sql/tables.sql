@@ -8,7 +8,9 @@ DROP TABLE IF EXISTS guru.users;
 CREATE TABLE guru.users (
     user_id SERIAL PRIMARY KEY,
     username TEXT NOT NULL,
-    level INT NOT NULL
+    level INT NOT NULL,
+	points INT NOT NULL,
+	last_song TEXT
 );
 
 CREATE TABLE guru.songs (
@@ -31,7 +33,7 @@ CREATE TABLE guru.questions (
 );
 
 CREATE TABLE guru.answers (
-    answer_id SERIAL PRIMARY KEY,
+    option_id SERIAL PRIMARY KEY,
 	option_one TEXT NOT NULL,
 	option_two TEXT NOT NULL,
 	option_three TEXT NOT NULL,
@@ -42,5 +44,5 @@ CREATE TABLE guru.answers (
 
 CREATE TABLE guru.choices (
     user_id INT REFERENCES guru.users(user_id),
-    answer_id INT REFERENCES guru.answers(answer_id)
+    answer_id INT REFERENCES guru.answers(option_id)
 );

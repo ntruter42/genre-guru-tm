@@ -1,0 +1,13 @@
+<div class="flex col xl-gap center middle view">
+
+	<div class="c-text l-text w-2 title"><b>Answer</b></div>
+	<form class="flex col xl-gap middle c-text w-2" method="get">
+		<div class="{{className}} message">That is {{feedback}}</div>
+
+		{{#if correction}}
+		<div>The correct answer is<br><b>{{correction}}</b></div>
+		{{/if}}
+
+		<button formaction="{{#if correction}}/{{else}}/question?song={{song_name.last_song}}{{/if}}" name="continue" type="submit">{{#if correction}}Try again{{else}}Continue{{/if}}</button>
+	</form>
+</div>

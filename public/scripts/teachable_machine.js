@@ -3,7 +3,7 @@
 // https://github.com/tensorflow/tfjs-models/tree/master/speech-commands
 
 // the link to your model provided by Teachable Machine export panel
-const URL = "https://teachablemachine.withgoogle.com/models/On9QTVQmM/";
+const URL = "https://teachablemachine.withgoogle.com/models/adtTjfFgG/";
 
 async function createModel() {
 	const checkpointURL = URL + "model.json"; // model topology
@@ -25,11 +25,13 @@ let highest = [];
 async function init() {
 	document.querySelector(".title").innerHTML = "<b>GenreGuru</b> is <i>listening</i>...";
 	document.querySelector(".arrow").innerHTML = "♫";
+	document.querySelector('button[name="listen"]').classList.add('expandContract');
+	document.querySelector(".guru-message").innerHTML = "Hmmm... I'm thinking.";
 	const recognizer = await createModel();
 	const classLabels = recognizer.wordLabels(); // get class labels
 	// const labelContainer = document.getElementById("label-container");
 	// for (let i = 0; i < classLabels.length; i++) {
-		// 	labelContainer.appendChild(document.createElement("div"));
+	// 	labelContainer.appendChild(document.createElement("div"));
 	// }
 
 	recognizer.listen(result => {
@@ -38,7 +40,7 @@ async function init() {
 		// render the probability scores per class
 		for (let i = 0; i < classLabels.length; i++) {
 			// const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
-			if (result.scores[i].toFixed(2) >= 0.85) {
+			if (result.scores[i].toFixed(2) >= 0.8) {
 				highest.push(classLabels[i]);
 			}
 			document.querySelector(".arrow").innerHTML = "⬇";
@@ -70,7 +72,7 @@ async function init() {
 		} else {
 			window.location.href = "http://localhost:3000/again"
 		}
-	}, 5000);
+	}, 8000);
 }
 
 function findMostProbableSong(songPredictions) {

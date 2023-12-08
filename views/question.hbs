@@ -1,25 +1,19 @@
 <div class="flex col xl-gap center middle view">
-	<h1>
-		<h1>GenreGuru - {{capitalize action}} - Level {{level}}</h1>
-	</h1>
 
-	<form class="flex col middle w-1" action="/question" method="post">
-		<div class="flex col gap middle w-2">
-			<h3>{{question}}</h3>
+	<div class="c-text l-text w-2 title"><b>Question</b> - <i>Level {{question.level}}</i></div>
+	<form class="flex col gap middle c-text w-2" action="/answer" method="post">
+		{{#with question}}
+		<div>{{question}}</div>
+		{{/with}}
 
-			<div class="flex col gap center w-1 wrap middle">
-				{{#each options}}
-				<button class="w-2" id="{{option_id}}" style="border-radius: 0.25em;">
-					{{answer}}
-				</button>
-				{{/each}}
-			</div>
-
-			{{!-- <button class="w-2 middle-self" onclick="">Submit Answer</button> --}}
+		<div class="flex col gap options">
+			{{#with options}}
+			<button formaction="/answer/{{../question.question_id}}?answer={{option_one}}" class="option_one">{{option_one}}</button>
+			<button formaction="/answer/{{../question.question_id}}?answer={{option_two}}" class="option_two">{{option_two}}</button>
+			<button formaction="/answer/{{../question.question_id}}?answer={{option_three}}" class="option_three">{{option_three}}</button>
+			<button formaction="/answer/{{../question.question_id}}?answer={{option_four}}" class="option_four">{{option_four}}</button>
+			{{/with}}
 		</div>
 	</form>
-
-
-    <div id="trivia"></div>
 
 </div>

@@ -9,7 +9,7 @@ const services = guru_services(db);
 
 app.use('/', guru_routes);
 
-export { services };
+export { services, app };
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
