@@ -3,7 +3,9 @@
 // https://github.com/tensorflow/tfjs-models/tree/master/speech-commands
 
 // the link to your model provided by Teachable Machine export panel
-const URL = "https://teachablemachine.withgoogle.com/models/adtTjfFgG/";
+
+const domain = 'https://genre-guru-tm.onrender.com';
+const URL = "https://teachablemachine.withgoogle.com/models/iUo28usgQ/";
 
 async function createModel() {
 	const checkpointURL = URL + "model.json"; // model topology
@@ -58,7 +60,7 @@ async function init() {
 		const song_name = findMostProbableSong(highest);
 		if (song_name && song_name !== "Background Noise") {
 			// axios.post('https://genre-guru-tm.onrender.com/song', {
-			axios.post('https://genre-guru-tm.onrender.com/song', {
+			axios.post(domain + '/song', {
 				song_name
 			})
 				.then(function (response) {
@@ -70,14 +72,14 @@ async function init() {
 				});
 			recognizer.stopListening();
 		} else {
-			window.location.href = "https://genre-guru-tm.onrender.com/again"
+			window.location.href = domain + "/again"
 		}
 	}, 8000);
 }
 
 function findMostProbableSong(songPredictions) {
 	var freq = {};
-	var threshold = songPredictions.length * 0.5;
+	var threshold = songPredictions.length * 0.4;
 
 	for (var i = 0; i < songPredictions.length; i++) {
 		var word = songPredictions[i];
