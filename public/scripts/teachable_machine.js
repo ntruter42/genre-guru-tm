@@ -42,7 +42,7 @@ async function init() {
 		// render the probability scores per class
 		for (let i = 0; i < classLabels.length; i++) {
 			// const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
-			if (result.scores[i].toFixed(2) >= 0.8) {
+			if (result.scores[i].toFixed(2) >= 0.7) {
 				highest.push(classLabels[i]);
 			}
 			document.querySelector(".arrow").innerHTML = "⬇";
@@ -79,7 +79,7 @@ async function init() {
 
 function findMostProbableSong(songPredictions) {
 	var freq = {};
-	var threshold = songPredictions.length * 0.4;
+	var threshold = songPredictions.length * 0.5;
 
 	for (var i = 0; i < songPredictions.length; i++) {
 		var word = songPredictions[i];
