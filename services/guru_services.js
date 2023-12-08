@@ -20,8 +20,8 @@ export default function (db) {
 	}
 
 	async function getSong(song_name) {
-		const artist = song_name.split('-')[0].trim();
-		const title = song_name.split('-')[1].trim();
+		const artist = song_name.split(' - ')[0];
+		const title = song_name.split(' - ')[1];
 
 		const query = `
 		SELECT *
@@ -44,7 +44,7 @@ export default function (db) {
             ORDER BY random()
             LIMIT 1;
         `;
-		const params = [level, genre_id];
+		const params = [level, 4];
 
 		const result = await db.oneOrNone(query, params);
 		return result;
