@@ -20,7 +20,8 @@ export default function (db) {
 	}
 
 	async function getSong(song_name) {
-		const [artist, title] = song_name.split(' - ');
+		const artist = song_name.split('-')[0].trim();
+		const title = song_name.split('-')[1].trim();
 
 		const query = `
 		SELECT *
@@ -77,11 +78,11 @@ export default function (db) {
 		const query = `
 		UPDATE guru.users
     	SET level = CASE WHEN level < 5 THEN level + 1 ELSE level END
-    	WHERE user_id = $1
+    	WHERE user_id = $1;
 		`;
 		const params = [user_id];
 
-		const result = db.oneOrNone(query, params);
+		const result = db.none(query, params);
 		return result;
 	}
 
